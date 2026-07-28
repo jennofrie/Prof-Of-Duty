@@ -1,0 +1,27 @@
+{
+  "name": "prof-of-duty",
+  "version": "0.1.0",
+  "description": "Playable, incomplete browser FPS prototype with procedural art, audio, physics, AI, and rendering",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "shot": "node tools/capture.mjs",
+    "test:ai": "node src/ai/selftest.mjs",
+    "test:physics": "node src/physics/selftest.js",
+    "test": "npm run test:ai && npm run test:physics",
+    "verify:ownership": "node scripts/check-branding.mjs"
+  },
+  "author": "Profexor",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.1",
+    "pngjs": "^7.0.0",
+    "vite": "^7.3.6"
+  },
+  "private": true
+}

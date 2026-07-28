@@ -1,0 +1,36 @@
+name: Ownership and repository integrity
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    name: Credits, license, images, tests, and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify ownership and documentation integrity
+        run: npm run verify:ownership
+
+      - name: Run deterministic headless tests
+        run: npm test
+
+      - name: Build production bundle
+        run: npm run build
